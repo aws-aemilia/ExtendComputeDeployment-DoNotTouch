@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "framework": { "name": "react", "version": "18.2.0" },
+  "imageSettings": {
+    "sizes": [
+      100,
+      200,
+      1920
+    ],
+    "domains": ["images.unsplash.com"],
+    "remotePatterns": [],
+    "formats": ["image/jpeg", "image/png", "image/webp", "image/avif"],
+    "minimumCacheTTL": 60,
+    "dangerouslyAllowSVG": false
+  },
+  "routes": [
+    {
+      "path": "/assets/*",
+      "target": {
+        "kind": "Static",
+        "cacheControl": "public, max-age=31536000, immutable"
+      }
+    },
+    {
+      "path": "/screenshots/*",
+      "target": {
+        "kind": "Static",
+        "cacheControl": "public, max-age=0"
+      }
+    },
+    {
+      "path": "/todo*",
+      "target": {
+        "kind": "Static",
+        "cacheControl": "public, max-age=0"
+      }
+    },
+    {
+      "path": "/ahio",
+      "target": {
+        "kind": "ImageOptimization"
+      }
+    },
+    {
+      "path": "/*",
+      "target": {
+        "kind": "Compute",
+        "src": "default"
+      },
+      "fallback": {
+        "kind": "Static",
+        "cacheControl": "public, max-age=0"
+      }
+    }
+  ],
+  "computeResources": [
+    {
+      "name": "default",
+      "runtime": "nodejs18.x",
+      "entrypoint": "index.cjs"
+    }
+  ]
+}
