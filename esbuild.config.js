@@ -12,7 +12,7 @@ const bundle = async () => {
       minify: true,
       platform: 'node',
       sourcemap: false,
-      target: 'node18',
+      target: 'node20',
       sourcesContent: false,
     }),
   ]);
